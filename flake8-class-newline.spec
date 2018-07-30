@@ -4,13 +4,14 @@
 #
 Name     : flake8-class-newline
 Version  : 1.6.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Summary  : Flake8 lint for newline after class definitions.
 Group    : Development/Tools
 License  : MIT
 Requires: flake8-class-newline-python3
+Requires: flake8-class-newline-license
 Requires: flake8-class-newline-python
 Requires: flake8
 BuildRequires : buildreq-distutils3
@@ -18,6 +19,14 @@ BuildRequires : flake8
 
 %description
 ===========================================
+
+%package license
+Summary: license components for the flake8-class-newline package.
+Group: Default
+
+%description license
+license components for the flake8-class-newline package.
+
 
 %package python
 Summary: python components for the flake8-class-newline package.
@@ -45,7 +54,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1532979057
+export SOURCE_DATE_EPOCH=1532979946
 python3 setup.py build -b py3
 
 %check
@@ -55,6 +64,8 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/flake8-class-newline
+cp LICENSE %{buildroot}/usr/share/doc/flake8-class-newline/LICENSE
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -62,6 +73,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/flake8-class-newline/LICENSE
 
 %files python
 %defattr(-,root,root,-)
