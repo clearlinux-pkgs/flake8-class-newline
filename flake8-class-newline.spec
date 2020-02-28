@@ -4,7 +4,7 @@
 #
 Name     : flake8-class-newline
 Version  : 1.6.0
-Release  : 11
+Release  : 12
 URL      : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Summary  : Flake8 lint for newline after class definitions.
@@ -18,7 +18,78 @@ BuildRequires : buildreq-distutils3
 BuildRequires : flake8
 
 %description
+Flake8 Extension to lint for a method newline after a Class definition
 ===========================================
+
+.. image:: https://travis-ci.org/AlexvEck/flake8-class-newline.svg?branch=master
+    :target: https://travis-ci.org/AlexvEck/flake8-class-newline
+   :alt: Build Status
+
+Usage
+-----
+
+If you are using flake8, you can install this package through pip.
+
+.. code:: shell
+
+    pip install flake8-class-newline
+
+This plugin is then automatically triggered when you run;
+
+.. code:: shell
+
+    flake8
+
+It produces only 1 error type; "CNL100 Class definition does not have a new line."
+
+NOTE; Documentation blocks (or docblocks) should be on the newline, they are therefore ignored by this plugin. See https://www.python.org/dev/peps/pep-0008/#documentation-strings
+
+
+Example
+-----
+
+PEP8 says we should surround every class method with a single blank line. See https://www.python.org/dev/peps/pep-0008/#blank-lines
+However flake8 is ambiguous about the first method having a blank line above it.
+
+Basically;
+
+.. code:: python
+
+    class AClassWithoutANewLine(object):
+        def a_method(self):
+            return 'a_value'
+
+    class AClassWithoutANewLineProperty(object):
+        @property
+        def a_method(self):
+            return 'a_value'
+
+or
+
+.. code:: python
+
+    class AClassWithANewLine(object):
+
+        def a_method(self):
+            return 'a_value'
+
+    class AClassWithANewLineProperty(object):
+
+        @property
+        def a_method(self):
+            return 'a_value'
+
+
+
+This plugin was made to enforce the latter.
+
+NOTE; properties of a class do not need a surrounding blank line, only methods.
+
+Special Notice
+-----
+
+This package was inspired by flake8-quotes created by @zheller.
+Thanks for the inspiration!
 
 %package license
 Summary: license components for the flake8-class-newline package.
@@ -41,6 +112,7 @@ python components for the flake8-class-newline package.
 Summary: python3 components for the flake8-class-newline package.
 Group: Default
 Requires: python3-core
+Provides: pypi(flake8-class-newline)
 
 %description python3
 python3 components for the flake8-class-newline package.
@@ -55,7 +127,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1574291710
+export SOURCE_DATE_EPOCH=1582923602
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
