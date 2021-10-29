@@ -4,7 +4,7 @@
 #
 Name     : flake8-class-newline
 Version  : 1.6.0
-Release  : 26
+Release  : 27
 URL      : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/17/f3/d93a95971801e0bd28539e7727e90553217ea76d48098ea02d10832f609f/flake8-class-newline-1.6.0.tar.gz
 Summary  : Flake8 lint for newline after class definitions.
